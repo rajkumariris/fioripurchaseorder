@@ -1,0 +1,10 @@
+{
+  "systems": [
+    {
+      "name": "S4HANA_UNV",
+      "type": "abap_onpremise",
+      "url": "http://s4ha.unvired.io:8001",
+      "client": "200"
+    }
+  ]
+}

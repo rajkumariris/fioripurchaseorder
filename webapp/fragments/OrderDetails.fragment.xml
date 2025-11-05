@@ -1,0 +1,82 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    
+    
+>
+   
+
+    <Table
+        id="idProductsTable"
+        inset="false"
+        items="{
+			path: 'poItems>/results',
+			sorter: {
+				path: 'Name'
+			}
+		}"
+    >
+        <columns>
+            <Column width="12em">
+                <Text text="Product" />
+               
+            </Column>
+             <Column width="12em">
+                <Text text="PurchaseOrderItemText" />
+               
+            </Column>
+            <Column width="12em">
+                <Text text="PurchaseOrderItem" />
+                
+            </Column>
+            <Column width="12em">
+                <Text text="Plant" />
+                
+            </Column>
+            <Column width="12em">
+                <Text text="StorageLocation" />
+                
+            </Column>
+             <Column width="12em">
+                <Text text="Material" />
+                
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem vAlign="Middle" type="Navigation" press="onItemPress">
+                <cells>
+                    <ObjectIdentifier
+                        title="{Name}"
+                        text="{poItems>Material}"
+                    />
+                    <Text text="{poItems>PurchaseOrderItem}" />
+                    <Text text="{poItems>PurchaseOrderItemText}" />
+                    <Text text="{poItems>Plant}" />
+                    <Text text="{poItems>StorageLocation}" />
+                     <Text text="{poItems>Material}" />
+                   
+                    <!-- <ObjectNumber
+                        number="{WeightMeasure}"
+                        unit="{WeightUnit}"
+                        state="{
+							parts: [
+								{path: 'WeightMeasure'},
+								{path: 'WeightUnit'}
+							],
+							formatter: '.formatter.weightState'
+						}"
+                    />
+                    <ObjectNumber
+                        number="{
+							parts:[{path:'Price'},{path:'CurrencyCode'}],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+						}"
+                        unit="{CurrencyCode}"
+                    /> -->
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>

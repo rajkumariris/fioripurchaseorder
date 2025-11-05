@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: demo
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://s4ha.unvired.io:8001
+          client: '100'
+        app:
+          name: ZRAJ_123
+          description: launchpad deployment
+          package: ZRPRACTICE
+          transport: S4HK900114
+        exclude:
+          - /test/

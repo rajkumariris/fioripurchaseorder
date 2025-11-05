@@ -1,0 +1,62 @@
+<mvc:View controllerName="demo.controller.PlannerApp"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:ui = "sap.ui.table"
+    >
+    <semantic:SemanticPage >
+      <semantic:titleHeading>
+         <Title
+            id = "idlist"
+            text="ListDEMOPage"
+            textAlign="Center"
+
+         />
+      </semantic:titleHeading>
+
+      <semantic:content>
+          <ui:Table
+              id="idtablelist"
+              rows="{purchaseOrder>/results}"
+              rowSelectionChange="onRowSelectionChange"
+              visibleRowCountMode="Auto"
+              minAutoRowCount="10"
+              height="80vh"
+          >
+             <ui:columns>
+                <ui:Column>
+                    <Label text="Name" />
+                     <ui:template>
+                        <Text text="{purchaseOrder>PurchaseOrder}" />
+                     </ui:template>
+                </ui:Column>
+                <ui:Column>
+                    <Label text="CompanyCode" />
+                     <ui:template>
+                        <Text text="{purchaseOrder>CompanyCode}" />
+                     </ui:template>
+                </ui:Column>
+                <ui:Column>
+                    <Label text="PurchaseOrderType" />
+                     <ui:template>
+                        <Text text="{purchaseOrder>PurchaseOrderType}" />
+                     </ui:template>
+                </ui:Column>
+                <ui:Column>
+                    <Label text="PurchasingGroup" />
+                     <ui:template>
+                        <Text text="{purchaseOrder>PurchasingGroup}" />
+                     </ui:template>
+                </ui:Column>
+                <ui:Column>
+                    <Label text="AddressCountry" />
+                     <ui:template>
+                        <Text text="{purchaseOrder>AddressCountry}" />
+                     </ui:template>
+                </ui:Column>
+               
+             </ui:columns>
+          </ui:Table>
+      </semantic:content>
+    </semantic:SemanticPage>
+</mvc:View>

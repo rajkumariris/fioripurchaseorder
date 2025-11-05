@@ -1,0 +1,74 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core = "sap.ui.core"
+ 
+>
+
+<VBox>
+  <f:Form
+   editable=""
+  >
+  <f:layout>
+				<f:ColumnLayout
+					columnsL="2"
+					columnsM="1"
+					columnsXL="3"
+					labelCellsLarge="3"
+
+				/>
+			</f:layout>
+    <f:formContainers>
+      <f:FormContainer>
+        <f:formElements>
+            <f:FormElement
+              label="Purchase Order"
+              id="PurchaseOrder"
+            >
+                <f:fields>
+                   <Input value="{poDetails>/PurchaseOrder}" editable="false" />
+                </f:fields>
+            </f:FormElement>
+            <f:FormElement
+              label="CompanyCode"
+              id="CompanyCode"
+            >
+              <f:fields>
+                <Input value="{poDetails>/CompanyCode}" editable="false" />
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement
+              label="Creation Date"
+              id="CreationDate"
+            >
+              <f:fields>
+                <Input value="{poDetails>/CreationDate}" editable="false" />
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement
+              label="Supplier"
+              id="Supplier"
+            >
+              <f:fields>
+                <Input value="{poDetails>/Supplier}" editable="false" />
+              </f:fields>
+            </f:FormElement>
+            <f:FormElement
+              label="Address Country"
+              id="AddressCountry"
+            >
+              <f:fields>
+                <Input value="{poDetails>/AddressCountry}" editable="false" />
+              </f:fields>
+            </f:FormElement>
+            
+
+        </f:formElements>
+      </f:FormContainer>
+    </f:formContainers>
+   
+     
+  </f:Form>
+</VBox>
+
+</core:FragmentDefinition>

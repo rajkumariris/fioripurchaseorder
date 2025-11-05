@@ -1,0 +1,106 @@
+<mvc:View
+    controllerName="demo.controller.OrderList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="Order Details"
+        showNavButton="true"
+    >
+        <VBox>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button
+                    id="editButton"
+                    icon="sap-icon://edit"
+                    text="Edit"
+                    press="_onEditPress"
+                    type="Emphasized"
+                />
+                <Button
+                    id="cancelButton"
+                    icon="sap-icon://decline"
+                    text="Cancel"
+                    press="_onCancelPress"
+                    type="Default"
+                    visible="{editModel>/editMode}"
+                />
+            </OverflowToolbar>
+            <f:Form editable="">
+                <f:layout>
+                    <f:ColumnLayout
+                        columnsL="2"
+                        columnsM="1"
+                        columnsXL="3"
+                        labelCellsLarge="3"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement
+                                label="Purchase Order Item"
+                                id="POItem"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/PurchaseOrderItem}"
+                                        editable="false"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="Purchase OrderItem Text"
+                                id="PurchaseOrderItemText"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/PurchaseOrderItemText}"
+                                        editable="{editModel>/editMode}"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="Plant"
+                                id="Plant"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/Plant}"
+                                        editable="{editModel>/editMode}"
+                                        showValueHelp="true"
+                                        
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="Storage Location"
+                                id="StorageLocation"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/StorageLocation}"
+                                        editable="{editModel>/editMode}"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="Order Quantity"
+                                id="OrderQuantity"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/OrderQuantity}"
+                                        editable="{editModel>/editMode}"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+    </Page>
+</mvc:View>

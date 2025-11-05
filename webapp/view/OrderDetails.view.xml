@@ -1,0 +1,63 @@
+<mvc:View
+    controllerName="demo.controller.OrderDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f ="sap.f"
+    xmlns:core = "sap.ui.core"
+    xmlns:m="sap.m"
+>  
+    <m:Page
+      title ="Order Details"
+      showNavButton="true"
+    >
+      <m:content>
+        <f:Card class="sapUiMediumMarginTop">
+            <f:content>
+              <m:Panel
+                
+              >
+                 <headerToolbar>
+                   <OverflowToolbar>
+                      <Title text="Deal Header"/>
+                      <ToolbarSpacer/>
+                      <Button 
+                      icon="sap-icon://edit"
+                        text="Edit"
+                        press="_onEditPress"
+                        type="Emphasized"
+                        />  
+                   </OverflowToolbar>
+                 </headerToolbar>
+                 <m:content>
+                   <core:Fragment 
+                    fragmentName="demo.fragments.OrderHeader"
+                    type="XML"
+                   />
+                 </m:content>
+              </m:Panel>
+            </f:content>
+        </f:Card>
+        <f:Card class="sapUiMediumMarginTop">
+            <f:content>
+              <m:Panel
+                
+              >
+                 <headerToolbar>
+                   <OverflowToolbar>
+                      <Title text="Item Details"/>
+                      <ToolbarSpacer/>
+                      
+                   </OverflowToolbar>
+                 </headerToolbar>
+                 <m:content>
+                   <core:Fragment 
+                    fragmentName="demo.fragments.OrderDetails"
+                    type="XML"
+                   />
+                 </m:content>
+              </m:Panel>
+            </f:content>
+        </f:Card>
+      </m:content>
+    </m:Page>
+</mvc:View>

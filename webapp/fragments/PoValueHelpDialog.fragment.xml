@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        title="Select Purchase Order"
+        contentWidth="40%"
+        contentHeight="50%"
+        items="{companyCodes>/results}"
+        confirm="_onValueHelpClose"
+        cancel=".onValueHelpDialogClose">
+        <StandardListItem
+            title="{companyCodes>CompanyCode}"
+            description="{companyCodes>CompanyCodeName}"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>
