@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        title="Select Material "
+        contentWidth="40%"
+        contentHeight="50%"
+        items="{MaterialCodes>/results}"
+        confirm="_onValueHelpClose2"
+        cancel=".onValueHelpDialogClose">
+        <StandardListItem
+            title="{MaterialCodes>Product}"
+            description="{MaterialCodes>ProductType}"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>

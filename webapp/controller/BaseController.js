@@ -79,6 +79,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller"
                     });
 
                 });
+            },
+
+            _valueHelpRequest : function(oEvent){
+                debugger;
             }
 
 

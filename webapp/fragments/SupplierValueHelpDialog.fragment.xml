@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        title="Select Supplier "
+        contentWidth="40%"
+        contentHeight="50%"
+        items="{supplierCodes>/results}"
+        confirm="_onValueHelpClose"
+        cancel=".onValueHelpDialogClose">
+        <StandardListItem
+            title="{supplierCodes>Supplier}"
+            description="{supplierCodes>BusinessPartnerFullName}"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>

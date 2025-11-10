@@ -14,8 +14,7 @@
       "id": "@sap/generator-fiori:basic",
       "version": "1.19.3",
       "toolsId": "4107457f-ff92-41a9-b059-7252aa149813"
-    }
-    ,
+    },
     "dataSources": {
       "purchaseOrder": {
         "uri": "/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/",
@@ -31,152 +30,197 @@
         "settings": {
           "odataVersion": "2.0"
         }
+      },
+      "supplierCode": {
+        "uri": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "plantCode" :{
+        "uri": "/sap/opu/odata/sap/API_PLANT_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      },
+      "materialCode":{
+        "uri": "/sap/opu/odata/sap/API_PRODUCT_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
       }
     }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
     },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.141.3",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "demo.i18n.i18n"
-        }
-      }
-      ,
-      "": {
-        "dataSource": "purchaseOrder",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "useBatch": true
-        },
-        "type": "sap.ui.model.odata.v2.ODataModel"
-      },
-      "companyCodeModel": {
-        "dataSource": "companyCode",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "useBatch": true
-        },
-        "type": "sap.ui.model.odata.v2.ODataModel"
-      }
-
-    },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
-    },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "transition": "slide",
-        "type": "View",
-        "viewType": "XML",
-        "path": "demo.view",
-        "async": true,
-        "viewPath": "demo.view"
-      },
-      "routes": [
-        {
-          "name": "RoutePlannerApp",
-          "pattern": ":?query:",
-          "target": [
-            "TargetPlannerApp"
-          ]
-        },
-        {
-          "name":"orderdetails",
-          "pattern": "orderdetails/{purchaseOrder}",
-          "target":[
-            "orderDetails"
-          ]
-        },
-        {
-          "name":"editorder",
-          "pattern": "editorder/{purchaseOrder}",
-          "target":[
-            "EditOrder"
-          ]
-        },
-        {
-          "name":"orderlist",
-          "pattern": "orderlist/{purchaseOrder}",
-          "target":[
-            "OrderList"
-          ]
-        } 
-      ],
-      "targets": {
-        "TargetPlannerApp": {
-          "id": "PlannerApp",
-          "name": "PlannerApp",
-          "viewName": "PlannerApp",
-          "type": "XML"
-          
-        },
-        "orderDetails":{
-          "id": "orderDetails",
-          "name": "orderDetails",
-          "viewName": "OrderDetails",
-          "type": "XML"
-
-        },
-        "EditOrder":{
-          "id":"editorder",
-          "name":"editorder",
-          "viewName":"EditOrder",
-          "type":"XML"
-        },
-        "OrderList":{
-          "id":"orderlist",
-          "name":"orderlist",
-          "viewName":"OrderList",
-          "type":"XML"
-        }
   
-    }
-  },
-    "rootView": {
-      "viewName": "demo.view.App",
-      "type": "XML",
-      "id": "App",
-      "async": true
+    "sap.ui": {
+      "technology": "UI5",
+      "icons": {
+        "icon": "",
+        "favIcon": "",
+        "phone": "",
+        "phone@2": "",
+        "tablet": "",
+        "tablet@2": ""
+      },
+      "deviceTypes": {
+        "desktop": true,
+        "tablet": true,
+        "phone": true
+      }
+    },
+    "sap.ui5": {
+      "flexEnabled": true,
+      "dependencies": {
+        "minUI5Version": "1.141.3",
+        "libs": {
+          "sap.m": {},
+          "sap.ui.core": {}
+        }
+      },
+      "contentDensities": {
+        "compact": true,
+        "cozy": true
+      },
+      "models": {
+        "i18n": {
+          "type": "sap.ui.model.resource.ResourceModel",
+          "settings": {
+            "bundleName": "demo.i18n.i18n"
+          }
+        },
+        "": {
+          "dataSource": "purchaseOrder",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultCountMode": "Inline",
+            "useBatch": true
+          },
+          "type": "sap.ui.model.odata.v2.ODataModel"
+        },
+        "companyCodeModel": {
+          "dataSource": "companyCode",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultCountMode": "Inline",
+            "useBatch": true
+          },
+          "type": "sap.ui.model.odata.v2.ODataModel"
+        },
+        "supplierModel": {
+          "dataSource": "supplierCode",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "OneWay",
+            "defaultCountMode": "Inline",
+            "useBatch": true
+          },
+          "type": "sap.ui.model.odata.v2.ODataModel"
+        },
+        "plantModel":{
+          "dataSource": "plantCode",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultCountMode": "Inline",
+            "useBatch": true
+          }
+        },
+        "materialModel":{
+           "dataSource": "materialCode",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultCountMode": "Inline",
+            "useBatch": true
+          }
+        }
+      },
+      "resources": {
+        "css": [
+          {
+            "uri": "css/style.css"
+          }
+        ]
+      },
+      "routing": {
+        "config": {
+          "routerClass": "sap.m.routing.Router",
+          "controlAggregation": "pages",
+          "controlId": "app",
+          "transition": "slide",
+          "type": "View",
+          "viewType": "XML",
+          "path": "demo.view",
+          "async": true,
+          "viewPath": "demo.view"
+        },
+        "routes": [
+          {
+            "name": "RoutePlannerApp",
+            "pattern": ":?query:",
+            "target": [
+              "TargetPlannerApp"
+            ]
+          },
+          {
+            "name": "orderdetails",
+            "pattern": "orderdetails/{purchaseOrder}",
+            "target": [
+              "orderDetails"
+            ]
+          },
+          {
+            "name": "editorder",
+            "pattern": "editorder/{purchaseOrder}",
+            "target": [
+              "EditOrder"
+            ]
+          },
+          {
+            "name": "orderlist",
+            "pattern": "orderlist/{purchaseOrder}",
+            "target": [
+              "OrderList"
+            ]
+          }
+        ],
+        "targets": {
+          "TargetPlannerApp": {
+            "id": "PlannerApp",
+            "name": "PlannerApp",
+            "viewName": "PlannerApp",
+            "type": "XML"
+          },
+          "orderDetails": {
+            "id": "orderDetails",
+            "name": "orderDetails",
+            "viewName": "OrderDetails",
+            "type": "XML"
+          },
+          "EditOrder": {
+            "id": "editorder",
+            "name": "editorder",
+            "viewName": "EditOrder",
+            "type": "XML"
+          },
+          "OrderList": {
+            "id": "orderlist",
+            "name": "orderlist",
+            "viewName": "OrderList",
+            "type": "XML"
+          }
+        }
+      },
+      "rootView": {
+        "viewName": "demo.view.App",
+        "type": "XML",
+        "id": "App",
+        "async": true
+      }
     }
   }
-}

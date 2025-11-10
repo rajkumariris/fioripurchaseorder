@@ -21,11 +21,21 @@
                       <Title text="Deal Header"/>
                       <ToolbarSpacer/>
                       <Button 
+                       id="editButton1"
                       icon="sap-icon://edit"
                         text="Edit"
                         press="_onEditPress"
                         type="Emphasized"
+                     
                         />  
+                          <Button
+                    id="cancelButton"
+                    icon="sap-icon://decline"
+                    text="Cancel"
+                    press="_onCancelPress"
+                    type="Default"
+                    visible="{editModel>/editMode}"
+                />
                    </OverflowToolbar>
                  </headerToolbar>
                  <m:content>

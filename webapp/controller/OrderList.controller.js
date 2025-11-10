@@ -5,6 +5,8 @@ sap.ui.define(["demo/controller/BaseController",
     "sap/ui/core/Fragment"
 ],function (BaseController, Filter, JSONModel, MessageToast,Fragment) {
         "use strict";
+        this.getloadoEvent = null;
+        this.poNum;
         return BaseController.extend("demo.controller.OrderList", {
             onInit: function () {
                 debugger;
@@ -19,6 +21,7 @@ sap.ui.define(["demo/controller/BaseController",
             _onRouteMatched: function (oEvent) {
                 debugger;
                 const sPOnum = oEvent.getParameter("arguments").purchaseOrder;
+                this.poNum = sPOnum;
                 this._getDealData(sPOnum);
 
             },
@@ -34,9 +37,11 @@ sap.ui.define(["demo/controller/BaseController",
                 console.log(oModel);
                 debugger;
             },
-            _onEditPress: function (oEvent) {
+            
+            _onEditPress: async function (oEvent) {
                 debugger;
-                
+                this.getloadoEvent = oEvent;
+
                 // Get the edit model
                 const oEditModel = this.getView().getModel("editModel");
                 const bCurrentEditMode = oEditModel.getProperty("/editMode");
@@ -45,18 +50,132 @@ sap.ui.define(["demo/controller/BaseController",
                 oEditModel.setProperty("/editMode", !bCurrentEditMode);
                 
                 // Change button text based on mode
-                const oButton = oEvent.getSource();
+                const oButton = oEvent.getSource(oEvent);
                 if (!bCurrentEditMode) {
                     oButton.setText("Save");
                     oButton.setIcon("sap-icon://save");
                     MessageToast.show("Edit mode enabled");
                 } else {
-                    oButton.setText("Edit");
-                    oButton.setIcon("sap-icon://edit");
+                    oButton.setEnabled(false);
+                    try{
+                        await this._onSavePressed(this.getloadoEvent);
+                         oButton.setText("Edit");
+                        oButton.setIcon("sap-icon://edit");
+                    }
+                    catch(error){
+                        oEditModel.setProperty("/editMode", true);
+                        oButton.setText("Save");
+                        oButton.setIcon("sap-icon://save");
+                        MessageToast.show("save failed");
+
+                        console.log(error);
+                    }
+                    finally{
+                        oButton.setEnabled(true);
+
+                    }
+                   
                     
                     // Here you can add save logic when switching from edit to view mode
                     // this._saveChanges();
                     MessageToast.show("Changes saved");
+                }
+            },
+            _onSavePressed: async function (oEvent) {
+               
+                debugger;
+                console.log(oEvent);
+                const sUrl = "/A_PurchaseOrder";
+                let aFilters = [];
+                aFilters.push(new Filter("PurchaseOrder", "EQ",  this.poNum));
+                const oModel = await this.getDataFromServer(sUrl, {}, aFilters);
+                const myModel = oModel.results[0];
+
+                const oPOdetailModel = new JSONModel(myModel);
+                this.setModel(oPOdetailModel, "poDetails");
+                console.log(oPOdetailModel);
+                
+                const oPOData = this.getView().getModel("poDetails").getData();
+                // Get the purchase order number (key field)
+                const sPurchaseOrder = oPOData.PurchaseOrder;
+                
+                // Build the OData path with the key
+                const sPath = "/A_PurchaseOrder('" + sPurchaseOrder + "')";
+                
+                // Create payload with only updatable fields
+                // Exclude read-only fields and metadata fields
+                const oUpdatePayload = {
+                    // Key fields (required for update)
+                    PurchaseOrder: oPOData.PurchaseOrder,
+                    
+                    // Updatable fields only
+                    CompanyCode: oPOData.CompanyCode,
+                    PurchaseOrderType: oPOData.PurchaseOrderType,
+                    // Note: Supplier field is causing the error - check if it's valid
+                    // Supplier: oPOData.Supplier,
+                    Language: oPOData.Language,
+                    PaymentTerms: oPOData.PaymentTerms,
+                    CashDiscount1Days: oPOData.CashDiscount1Days,
+                    CashDiscount2Days: oPOData.CashDiscount2Days,
+                    NetPaymentDays: oPOData.NetPaymentDays,
+                    CashDiscount1Percent: oPOData.CashDiscount1Percent,
+                    CashDiscount2Percent: oPOData.CashDiscount2Percent,
+                    PurchasingOrganization: oPOData.PurchasingOrganization,
+                    PurchasingGroup: oPOData.PurchasingGroup,
+                    PurchaseOrderDate: oPOData.PurchaseOrderDate,
+                    DocumentCurrency: oPOData.DocumentCurrency,
+                    ExchangeRate: oPOData.ExchangeRate,
+                    ExchangeRateIsFixed: oPOData.ExchangeRateIsFixed,
+                    ValidityStartDate: oPOData.ValidityStartDate,
+                    ValidityEndDate: oPOData.ValidityEndDate,
+                    SupplierQuotationExternalID: oPOData.SupplierQuotationExternalID,
+                    PurchasingCollectiveNumber: oPOData.PurchasingCollectiveNumber,
+                    SupplierRespSalesPersonName: oPOData.SupplierRespSalesPersonName,
+                    SupplierPhoneNumber: oPOData.SupplierPhoneNumber,
+                    SupplyingSupplier: oPOData.SupplyingSupplier,
+                    SupplyingPlant: oPOData.SupplyingPlant,
+                    IncotermsClassification: oPOData.IncotermsClassification,
+                    CorrespncExternalReference: oPOData.CorrespncExternalReference,
+                    IncotermsVersion: oPOData.IncotermsVersion,
+                    IncotermsLocation1: oPOData.IncotermsLocation1,
+                    IncotermsLocation2: oPOData.IncotermsLocation2,
+                    AddressCityName: oPOData.AddressCityName,
+                    AddressFaxNumber: oPOData.AddressFaxNumber,
+                    AddressHouseNumber: oPOData.AddressHouseNumber,
+                    AddressName: oPOData.AddressName,
+                    AddressPostalCode: oPOData.AddressPostalCode,
+                    AddressStreetName: oPOData.AddressStreetName,
+                    AddressPhoneNumber: oPOData.AddressPhoneNumber,
+                    AddressRegion: oPOData.AddressRegion,
+                    AddressCountry: oPOData.AddressCountry,
+                    AddressCorrespondenceLanguage: oPOData.AddressCorrespondenceLanguage
+                };
+                
+                // Remove undefined/null values
+                Object.keys(oUpdatePayload).forEach(key => {
+                    if (oUpdatePayload[key] === undefined || oUpdatePayload[key] === null) {
+                        delete oUpdatePayload[key];
+                    }
+                });
+                
+                try {
+                    // Call the update method with only updatable fields
+                    const oUpdatedData = await this.updateDataToServer(sPath, oUpdatePayload);
+                    
+                    // Show success message
+                    MessageToast.show("Purchase Order" + sPurchaseOrder + " updated successfully");
+                    
+                    // Navigate back to the order details view
+                    this.getRouter().navTo("orderdetails", {
+                        purchaseOrder: sPurchaseOrder
+                    });
+                    
+                } catch (oError) {
+                    console.error("Error updating purchase order:", oError);
+                    
+                    // Show error message
+                    MessageBox.error("Failed to update Purchase Order: " + 
+                        (oError.message || oError.responseText || "Unknown error"));
                 }
             },
             
@@ -125,7 +244,7 @@ sap.ui.define(["demo/controller/BaseController",
                 });
 
             },
-            _onValueHelpClose: function (oEvent) {
+            _onValueHelpClose: function (oEvent) { ser678
                 var oSelectedItem = oEvent.getParameter("selectedItem");
                 oEvent.getSource().getBinding("items").filter([]);
 

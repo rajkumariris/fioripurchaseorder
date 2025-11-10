@@ -20,7 +20,7 @@
                     type="Emphasized"
                 />
                 <Button
-                    id="cancelButton"
+                    id="cancelButton1"
                     icon="sap-icon://decline"
                     text="Cancel"
                     press="_onCancelPress"
@@ -71,9 +71,10 @@
                                         value="{poListItems>/Plant}"
                                         editable="{editModel>/editMode}"
                                         showValueHelp="true"
+                                        valueHelpRequest="_onPlantValueHelpRequest"
                                         
                                     />
-                                </f:fields>
+                                </f:fields> 
                             </f:FormElement>
                             <f:FormElement
                                 label="Storage Location"
@@ -94,6 +95,19 @@
                                     <Input
                                         value="{poListItems>/OrderQuantity}"
                                         editable="{editModel>/editMode}"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement
+                                label="Material"
+                                id="Material1"
+                            >
+                                <f:fields>
+                                    <Input
+                                        value="{poListItems>/Material}"
+                                        editable="{editModel>/editMode}"
+                                        showValueHelp="true"
+                                        valueHelpRequest="_onMatValueHelpRequest"
                                     />
                                 </f:fields>
                             </f:FormElement>

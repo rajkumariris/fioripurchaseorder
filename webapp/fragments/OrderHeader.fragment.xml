@@ -34,7 +34,7 @@
               id="CompanyCode"
             >
               <f:fields>
-                <Input value="{poDetails>/CompanyCode}" editable="false" />
+                <Input value="{poDetails>/CompanyCode}" editable="{editModel>/editMode}" />
               </f:fields>
             </f:FormElement>
             <f:FormElement
@@ -42,7 +42,7 @@
               id="CreationDate"
             >
               <f:fields>
-                <Input value="{poDetails>/CreationDate}" editable="false" />
+                <Input value="{poDetails>/CreationDate}" editable="{editModel>/editMode}" />
               </f:fields>
             </f:FormElement>
             <f:FormElement
@@ -50,7 +50,11 @@
               id="Supplier"
             >
               <f:fields>
-                <Input value="{poDetails>/Supplier}" editable="false" />
+                <Input value="{poDetails>/Supplier}" 
+                editable="{editModel>/editMode}"
+                showValueHelp="true"
+                valueHelpRequest="_onSupplierValueHelpRequest"
+                 />
               </f:fields>
             </f:FormElement>
             <f:FormElement
@@ -58,7 +62,7 @@
               id="AddressCountry"
             >
               <f:fields>
-                <Input value="{poDetails>/AddressCountry}" editable="false" />
+                <Input value="{poDetails>/AddressCountry}" editable="{editModel>/editMode}" />
               </f:fields>
             </f:FormElement>
             
