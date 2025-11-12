@@ -65,6 +65,14 @@
                 <Input value="{poDetails>/AddressCountry}" editable="{editModel>/editMode}" />
               </f:fields>
             </f:FormElement>
+            <f:FormElement
+              label="Address City Name"
+              id="AddressCityName"
+            >
+              <f:fields>
+                <Input value="{poDetails>/AddressCityName}" editable="{editModel>/editMode}" />
+              </f:fields>
+            </f:FormElement>
             
 
         </f:formElements>

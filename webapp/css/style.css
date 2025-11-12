@@ -1,1 +1,8 @@
 /* Enter your custom styles here */
+ .error-toast {
+        background-color: #f2dede !important;
+        color: #a94442 !important;
+        border: 1px solid #ebcccc !important;
+        font-weight: bold !important;
+    }
+   
