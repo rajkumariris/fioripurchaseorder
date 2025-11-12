@@ -33,5 +33,5 @@ server:
           - path: "/sap/opu/odata"
             url: "http://s4ha.unvired.io:8001/sap/opu/odata"
             headers:
-              Authorization: "Basic QU1VVEhZQUxBOlVudmlyZWQxMjMq"
+              
         

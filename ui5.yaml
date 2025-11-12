@@ -18,9 +18,6 @@ server:
         backend:
           - path: /sap
             url: http://s4ha.unvired.io:8001
-            # authentication: basic
-            # user: AMUTHYALA
-            # password: Unvired123*
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
